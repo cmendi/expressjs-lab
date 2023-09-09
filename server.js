@@ -8,6 +8,11 @@ const formDataPath = path.join(__dirname, "./formsubmissions.json");
 
 const app = express();
 
+app.use((req, res, next) => {
+	console.log(`Requested URL: ${req.url}`);
+	next();
+});
+
 // Would like more explanation on what this does please.
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -55,12 +60,8 @@ app.get("/formsubmissions", (req, res) => {
 
 app.use(express.static(path.join(__dirname, "/public")));
 
-// app.use((req, res, next) => {
-// 	console.log(`Requested URL: ${req.url}`);
-// 	next();
-// });
+app.get("/", (req, res) => {
+	res.send("Hello from the server side...");
+});
 
-// app.get("/", (req, res) => {
-// 	res.send("Hello from the server side...");
-// });
 app.listen(3000);
