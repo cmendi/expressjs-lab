@@ -3,10 +3,12 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 
+const app = express();
+
 // Setting path to JSON file.
 const formDataPath = path.join(__dirname, "./formsubmissions.json");
 
-const app = express();
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use((req, res, next) => {
 	console.log(`Requested URL: ${req.url}`);
@@ -58,10 +60,8 @@ app.get("/formsubmissions", (req, res) => {
 	});
 });
 
-app.use(express.static(path.join(__dirname, "/public")));
-
-app.get("/", (req, res) => {
-	res.send("Hello from the server side...");
-});
+// app.get("/", (req, res) => {
+// 	res.send("Hello from the server side...");
+// });
 
 app.listen(3000);
