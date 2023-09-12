@@ -8,7 +8,7 @@ const app = express();
 // Setting path to JSON file.
 const formDataPath = path.join(__dirname, "./formsubmissions.json");
 
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "./public")));
 
 app.use((req, res, next) => {
 	console.log(`Requested URL: ${req.url}`);
